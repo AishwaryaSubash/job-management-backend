@@ -21,9 +21,8 @@ model Jobs {
   title            String
   location         String
   type             JobType   @default(FULL_TIME)
-  salaryRange      String
-  minSalary        Int?
-  maxSalary        Int?
+  minSalary        Int
+  maxSalary        Int
   description      String
   requirements     String
   responsibilities String

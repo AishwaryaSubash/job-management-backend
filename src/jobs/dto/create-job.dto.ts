@@ -1,5 +1,11 @@
 import { JobType } from '@prisma/client';
-import { IsNotEmpty, IsString, MinLength, IsEmpty } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  MinLength,
+  IsEmpty,
+  IsNumber,
+} from 'class-validator';
 
 export class CreateJobDto {
   @IsString()
@@ -19,9 +25,13 @@ export class CreateJobDto {
   @IsNotEmpty()
   type: JobType;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  salaryRange: string;
+  minSalary: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  maxSalary: number;
 
   @IsString()
   @IsNotEmpty()
