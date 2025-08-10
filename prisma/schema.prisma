@@ -30,7 +30,7 @@ model Companies {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String   @unique
-  logo      String?
+  logo      String?  @default("https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg")
   jobs      Jobs[]
 }
 
