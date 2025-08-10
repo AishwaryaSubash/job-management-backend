@@ -6,6 +6,7 @@ import {
   // Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -21,8 +22,8 @@ export class JobsController {
   }
 
   @Get()
-  findAll() {
-    return this.jobsService.findAll();
+  findAll(@Query('search') search?: string) {
+    return this.jobsService.findAll(search);
   }
 
   @Get(':id')

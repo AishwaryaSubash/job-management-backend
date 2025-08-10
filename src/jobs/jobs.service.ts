@@ -28,7 +28,7 @@ export class JobsService {
     return job;
   }
 
-  async findAll() {
+  async findAll(search?: string) {
     const jobs = await this.prismaService.jobs.findMany({
       select: {
         company: {
@@ -49,6 +49,15 @@ export class JobsService {
         type: true,
         updatedAt: true,
       },
+      where: search
+        ? {
+            OR: [
+              { title: { search } },
+              { description: { search } },
+              { location: { search } },
+            ],
+          }
+        : {},
     });
     return jobs;
   }
