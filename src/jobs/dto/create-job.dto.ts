@@ -1,5 +1,5 @@
-import { JobType } from '@prisma/client';
 import { IsNotEmpty, IsString, MinLength, IsEmpty } from 'class-validator';
+import { JobType } from 'generated/prisma';
 
 export class CreateJobDto {
   @IsString()
