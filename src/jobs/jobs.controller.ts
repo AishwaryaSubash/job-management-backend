@@ -6,7 +6,7 @@ import {
   // Patch,
   Param,
   Delete,
-  // Query,
+  Query,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { CreateJobDto } from './dto/create-job.dto';
@@ -21,31 +21,26 @@ export class JobsController {
     return this.jobsService.create(createJobDto);
   }
 
-  // @Get()
-  // findAll(@Query('q') search?: string) {
-  //   return this.jobsService.findAll(search);
-  // }
-
   @Get()
-  findAll() {
-    return this.jobsService.findAll();
+  async findAll(
+    @Query('search') search?: string,
+    @Query('location') location?: string,
+    @Query('jobType') jobType?: string,
+    @Query('salaryMin') salaryMin?: string,
+    @Query('salaryMax') salaryMax?: string,
+  ) {
+    return this.jobsService.findAll({
+      search,
+      location,
+      jobType,
+      salaryMin: salaryMin ? Number(salaryMin) : undefined,
+      salaryMax: salaryMax ? Number(salaryMax) : undefined,
+    });
   }
 
   // @Get()
-  // findAll(
-  //   @Query('title') title?: string,
-  //   @Query('type') type?: string,
-  //   @Query('location') location?: string,
-  //   @Query('minSalary') minSalary?: string,
-  //   @Query('maxSalary') maxSalary?: string,
-  // ) {
-  //   return this.jobsService.findAll({
-  //     title,
-  //     type,
-  //     location,
-  //     minSalary: minSalary ? Number(minSalary) : undefined,
-  //     maxSalary: maxSalary ? Number(maxSalary) : undefined,
-  //   });
+  // findAll() {
+  //   return this.jobsService.findAll();
   // }
 
   @Get(':id')
