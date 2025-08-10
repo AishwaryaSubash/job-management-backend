@@ -22,6 +22,8 @@ model Jobs {
   location         String
   type             JobType   @default(FULL_TIME)
   salaryRange      String
+  minSalary        Int?
+  maxSalary        Int?
   description      String
   requirements     String
   responsibilities String

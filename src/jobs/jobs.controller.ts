@@ -22,9 +22,26 @@ export class JobsController {
   }
 
   @Get()
-  findAll(@Query('search') search?: string) {
+  findAll(@Query('q') search?: string) {
     return this.jobsService.findAll(search);
   }
+
+  // @Get()
+  // findAll(
+  //   @Query('title') title?: string,
+  //   @Query('type') type?: string,
+  //   @Query('location') location?: string,
+  //   @Query('minSalary') minSalary?: string,
+  //   @Query('maxSalary') maxSalary?: string,
+  // ) {
+  //   return this.jobsService.findAll({
+  //     title,
+  //     type,
+  //     location,
+  //     minSalary: minSalary ? Number(minSalary) : undefined,
+  //     maxSalary: maxSalary ? Number(maxSalary) : undefined,
+  //   });
+  // }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
